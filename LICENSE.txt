@@ -1,0 +1,1 @@
+Uso privado del usuario. Las APIs deportivas y Supabase están sujetas a sus propios términos.
