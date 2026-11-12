@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09091f">
+<title>BET DASHBOARD 2.0</title>
+<style>
+:root{--bg:#09091f;--panel:#111b3c;--card:#151d40;--green:#76f52b;--blue:#2379d9;--orange:#ff7139;--muted:#a6adc8;--line:#29345d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 30% 0%,#354e83 0,#111b3c 38%,#08091c 78%);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#fff;min-height:100vh;padding:22px}
+button,input{font:inherit}.app{max-width:1600px;margin:auto;min-height:calc(100vh - 44px);background:var(--bg);border:1px solid #34416b;border-radius:28px;overflow:hidden;display:grid;grid-template-columns:76px minmax(0,1fr) 290px;box-shadow:0 24px 70px #02030b99}
+nav{background:#101027;border-right:1px solid #20264a;padding:22px 10px;display:flex;flex-direction:column;align-items:center;gap:13px}
+.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--green),#2d9dff);display:grid;place-items:center;color:#071020;font-weight:1000;margin-bottom:22px}
+.navbtn{border:0;background:transparent;color:#828baa;width:48px;height:48px;border-radius:14px;cursor:pointer;font-size:19px;position:relative}.navbtn:hover,.navbtn.active{background:#20294e;color:var(--green);box-shadow:inset 0 0 0 1px #34416b}.navbtn span{position:absolute;left:58px;top:13px;background:#0c1028;padding:7px 10px;border-radius:8px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;z-index:5}.navbtn:hover span{opacity:1}
+main{padding:27px 30px;min-width:0}.top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:25px}.eyebrow{color:var(--muted);font-size:12px;letter-spacing:1.4px;text-transform:uppercase}.top h1{font-size:28px;margin:4px 0 0}.actions{display:flex;align-items:center;gap:9px}.iconbtn,.pill{background:#151d40;border:1px solid #2b365f;color:#dce3ff;border-radius:12px;padding:10px 13px;cursor:pointer}.iconbtn:hover,.pill:hover{border-color:var(--green)}.wallet{padding:9px 14px;background:#172344;border:1px solid #31436e;border-radius:13px}.wallet small{display:block;color:var(--muted);font-size:10px}.wallet strong{font-size:15px}.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#477ee5,#a44be5);display:grid;place-items:center;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin-bottom:22px}.stat{background:linear-gradient(145deg,#182449,#121a39);border:1px solid #29365f;border-radius:17px;padding:18px;position:relative;overflow:hidden}.stat:after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;right:-40px;top:-45px;background:#76f52b12;filter:blur(5px)}.stathead{display:flex;justify-content:space-between;color:var(--muted);font-size:13px}.statvalue{font-size:29px;font-weight:800;margin:13px 0 4px}.statfoot{display:flex;gap:9px;align-items:center;font-size:12px;color:var(--muted)}.positive{color:var(--green)}.negative{color:#ff7777}.spark{height:38px;margin-top:10px;width:100%}
+.panel{background:var(--panel);border:1px solid #29365f;border-radius:17px;padding:18px;margin-bottom:18px;min-width:0}.panelhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panelhead h2{font-size:16px;margin:0}.sub{color:var(--muted);font-size:12px}.primary{background:var(--green);color:#09121c;border:0;border-radius:10px;padding:10px 15px;font-weight:800;cursor:pointer}.primary:hover{filter:brightness(1.1);transform:translateY(-1px)}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:780px;font-size:12px}th{text-align:left;color:#8995b8;font-weight:600;padding:11px 9px;border-bottom:1px solid #2b365f}td{padding:14px 9px;border-bottom:1px solid #222d52;color:#e4e9ff}tbody tr:hover{background:#ffffff08}.match{font-weight:700}.league{color:#8e9abb;font-size:11px;margin-top:4px}.status{padding:5px 9px;border-radius:20px;font-size:10px;font-weight:800;text-transform:uppercase}.win{background:#76f52b1b;color:var(--green)}.push{background:#ffb6481b;color:#ffbd59}.loss{background:#ff65651b;color:#ff7777}.profit{color:var(--green);font-weight:700}.lower{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}.pressuregrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.metric{background:#172247;border-radius:12px;padding:13px}.metric small{color:var(--muted);font-size:11px}.metric strong{display:block;font-size:19px;margin-top:7px}.liveitem{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #29365f}.liveitem:last-child{border:0}.liveitem strong{font-size:13px}.score{font-weight:900;color:var(--green);font-size:17px}.live-tag{color:#ff6969;font-size:10px;font-weight:900}.banner{border-radius:17px;min-height:125px;padding:22px;background:linear-gradient(110deg,#14264eaa,#101027dd),radial-gradient(circle at 80% 20%,#347de8,#111b3c);border:1px solid #354b7a;display:flex;align-items:center;justify-content:space-between;overflow:hidden}.banner h2{font-size:23px;margin:5px 0}.banner p{color:#b8c5e9;font-size:12px}.bannerball{font-size:62px;opacity:.65}
+aside{background:#0e142e;border-left:1px solid #20264a;padding:25px 18px;min-width:0}.asidehead{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.asidehead h2{font-size:16px;margin:0}.calendar{background:#151d40;border:1px solid #2b365f;border-radius:15px;padding:14px;margin-bottom:24px}.calnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.calnav button{background:none;border:0;color:#cbd4f4;cursor:pointer}.calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font-size:11px}.calgrid span{padding:7px 0;color:#8995b8}.calgrid .day{color:#e5eaff;border-radius:8px}.calgrid .today{background:var(--green);color:#09121c;font-weight:900}.games{display:flex;flex-direction:column;gap:10px}.game{background:#151d40;border:1px solid #28345e;border-radius:12px;padding:12px}.game small{color:var(--muted);font-size:10px}.teams{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:12px;font-weight:700}.teams b{color:var(--green)}
+.notice{font-size:10px;color:#7f8aab;text-align:center;padding:10px}
+.modalback{position:fixed;inset:0;background:#03040bcc;display:none;place-items:center;padding:20px;z-index:10}.modalback.show{display:grid}.modal{width:min(430px,100%);background:#111b3c;border:1px solid #3a4a79;border-radius:18px;padding:22px;box-shadow:0 25px 70px #000}.modal h2{margin:0 0 16px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}.field input,.search{background:#0b1129;color:#fff;border:1px solid #33416b;border-radius:9px;padding:11px;outline:none}.field input:focus,.search:focus{border-color:var(--green)}.modalactions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.secondary{background:#20294e;color:#fff;border:1px solid #35416c;border-radius:9px;padding:10px 14px;cursor:pointer}
+@media(max-width:1150px){.app{grid-template-columns:68px minmax(0,1fr)}aside{display:none}.lower{grid-template-columns:1fr}}
+@media(max-width:760px){body{padding:0;background:var(--bg)}.app{border-radius:0;border:0;min-height:100vh;grid-template-columns:1fr;display:block}nav{position:fixed;z-index:4;bottom:0;left:0;right:0;height:64px;padding:6px 10px;flex-direction:row;justify-content:space-around;border-right:0;border-top:1px solid #29365f}.logo{display:none}.navbtn{width:43px;height:43px}.navbtn span{display:none}main{padding:20px 14px 85px}.top{align-items:flex-start}.top h1{font-size:23px}.actions{gap:5px}.iconbtn{padding:9px}.wallet{display:none}.stats{grid-template-columns:1fr}.stat{padding:15px}.statvalue{font-size:25px}.pressuregrid{grid-template-columns:repeat(2,1fr)}.panel{padding:14px}.banner{min-height:110px}.bannerball{font-size:45px}}
+</style>
+</head>
+<body>
+<div class="app">
+<nav aria-label="Main navigation">
+<div class="logo">B</div>
+<button class="navbtn active" data-page="Dashboard" title="Dashboard">▦<span>Dashboard</span></button>
+<button class="navbtn" data-page="Statistics" title="Statistics">▥<span>Statistics</span></button>
+<button class="navbtn" data-page="Live Matches" title="Live Matches">◉<span>Live Matches</span></button>
+<button class="navbtn" data-page="Bets" title="Bets">▤<span>Bets</span></button>
+<button class="navbtn" data-page="Favorites" title="Favorites">☆<span>Favorites</span></button>
+<button class="navbtn" data-page="Users" title="Users">♙<span>Users</span></button>
+</nav>
+<main>
+<header class="top">
+<div><div class="eyebrow">Overview / <span id="crumb">Dashboard</span></div><h1 id="pageTitle">Dashboard</h1></div>
+<div class="actions">
+<button class="iconbtn" id="filterBtn" title="Filter">☷</button>
+<input class="search" id="search" placeholder="Search bets..." style="width:145px">
+<button class="iconbtn" title="Notifications" id="notify">♧</button>
+<button class="iconbtn" title="Settings" id="settings">⚙</button>
+<div class="wallet"><small>WALLET BALANCE</small><strong>$2,460.00</strong></div>
+<div class="avatar" title="User profile">U</div>
+</div>
+</header>
+<section class="stats">
+<article class="stat"><div class="stathead"><span>Total Bets</span><span>↗</span></div><div class="statvalue">12.3K</div><div class="statfoot"><b class="positive">+23.4%</b><span>vs. previous period</span></div><svg class="spark" viewBox="0 0 260 38" preserveAspectRatio="none"><path d="M0 30 C25 28 32 8 58 17 S90 30 115 12 S150 20 175 8 S220 21 260 2" fill="none" stroke="#76f52b" stroke-width="2.5"/><path d="M0 30 C25 28 32 8 58 17 S90 30 115 12 S150 20 175 8 S220 21 260 2 L260 38 L0 38Z" fill="#76f52b" opacity=".09"/></svg><div class="sub">Volume <b>$12,224.00</b></div></article>
+<article class="stat"><div class="stathead"><span>Total ROI</span><span>⌁</span></div><div class="statvalue">18.59%</div><div class="statfoot"><b class="negative">-12%</b><span>vs. previous period</span></div><svg class="spark" viewBox="0 0 260 38" preserveAspectRatio="none"><path d="M0 7 C35 12 40 28 75 17 S115 9 140 25 S190 10 215 18 S240 27 260 31" fill="none" stroke="#2196f3" stroke-width="2.5"/></svg><div class="sub">Total amount <b>$16,484.00</b></div></article>
+<article class="stat"><div class="stathead"><span>Total Result</span><span>↗</span></div><div class="statvalue">+$855.8</div><div class="statfoot"><b class="positive">+4.5%</b><span>vs. previous period</span></div><svg class="spark" viewBox="0 0 260 38" preserveAspectRatio="none"><path d="M0 32 C30 28 40 15 70 20 S105 9 130 18 S170 6 195 13 S230 5 260 2" fill="none" stroke="#76f52b" stroke-width="2.5"/></svg><div class="sub">Settled amount <b>$6,902.00</b></div></article>
+</section>
+<section class="panel">
+<div class="panelhead"><div><h2>Latest Bets</h2><div class="sub">Recent activity across your account</div></div><button class="primary" id="newBet">＋ New Bet</button></div>
+<div class="tablewrap"><table><thead><tr><th>Date</th><th>Time</th><th>Match</th><th>League</th><th>Status</th><th>Selection</th><th>Bookmaker</th><th>Stake</th><th>Odds</th><th>Profit</th></tr></thead><tbody id="betsBody"></tbody></table></div>
+</section>
+<div class="lower">
+<section class="panel"><div class="panelhead"><div><h2>Match Pressure</h2><div class="sub"><span class="live-tag">● LIVE</span> Match statistics overview</div></div><span class="sub">Demo metrics</span></div>
+<div class="pressuregrid"><div class="metric"><small>Goals Attempts</small><strong>14 : 9</strong></div><div class="metric"><small>Cards</small><strong>2 : 3</strong></div><div class="metric"><small>Home Team</small><strong>54%</strong></div><div class="metric"><small>Away Team</small><strong>46%</strong></div><div class="metric"><small>Possession</small><strong>58 : 42</strong></div><div class="metric"><small>Attack Statistics</small><strong>63 : 37</strong></div></div></section>
+<section class="panel"><div class="panelhead"><div><h2>Live Now</h2><div class="sub"><span class="live-tag">● LIVE</span> Matches in progress</div></div><button class="pill" id="refreshLive">↻</button></div>
+<div class="liveitem"><div><small class="sub">UEFA Europa League</small><br><strong>Arsenal</strong> <span class="sub">vs</span> <strong>Roma</strong></div><div class="score">0 : 1</div></div>
+<div class="liveitem"><div><small class="sub">La Liga</small><br><strong>Atlético Madrid</strong> <span class="sub">vs</span> <strong>Barcelona</strong></div><div class="score">1 : 2</div></div>
+</section>
+</div>
+<section class="banner"><div><div class="eyebrow">Featured competition</div><h2>Premier League</h2><p>Follow fixtures, results and match statistics.</p><button class="primary" id="allMatches">All matches →</button></div><div class="bannerball">⚽</div></section>
+<div class="notice">BET DASHBOARD 2.0 · Sample interface data · Not connected to a bookmaker or live sports feed.</div>
+</main>
+<aside>
+<div class="asidehead"><h2>Calendar</h2><span class="sub" id="monthLabel">Month</span></div>
+<div class="calendar"><div class="calnav"><button id="prevMonth">‹</button><b id="calTitle"></b><button id="nextMonth">›</button></div><div class="calgrid" id="calGrid"></div></div>
+<div class="asidehead"><h2>My Games Today</h2><span class="sub">Demo</span></div>
+<div class="games">
+<div class="game"><small>Featured match</small><div class="teams"><span>Atlético Madrid</span><b>1–5</b><span>Barcelona</span></div></div>
+<div class="game"><small>Featured match</small><div class="teams"><span>Bayern Munich</span><b>2–3</b><span>Wolfsburg</span></div></div>
+<div class="game"><small>League listing</small><div class="teams"><span>MLS</span><b>2–3</b><span>MLC</span></div></div>
+</div>
+</aside>
+</div>
+<div class="modalback" id="modal"><div class="modal"><h2>Add new bet</h2><form id="betForm">
+<div class="field"><label>Match</label><input id="matchInput" required placeholder="Home - Away"></div>
+<div class="field"><label>League</label><input id="leagueInput" placeholder="Competition"></div>
+<div class="field"><label>Selection</label><input id="selectionInput" required placeholder="Team / market"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><div class="field"><label>Stake ($)</label><input id="stakeInput" type="number" min="0" step=".01" required placeholder="10"></div><div class="field"><label>Odds</label><input id="oddsInput" type="number" min="1" step=".01" required placeholder="1.80"></div></div>
+<div class="modalactions"><button type="button" class="secondary" id="cancelModal">Cancel</button><button class="primary" type="submit">Save bet</button></div>
+</form></div></div>
+<script>
+const bets=[
+{date:"12 Nov 2026",time:"08:30",match:"Roma - Atalanta",league:"Italy. Serie A",status:"win",selection:"Roma",bookmaker:"bwin",stake:"$16.8",odds:"1.74",profit:"+29.23"},
+{date:"12 Nov 2026",time:"07:45",match:"Seville - Osasuna",league:"Spain. La Liga",status:"win",selection:"Seville",bookmaker:"Sport",stake:"$5.2",odds:"1.02",profit:"+5.30"},
+{date:"11 Nov 2026",time:"20:15",match:"Roma - Atalanta",league:"Italy. Serie A",status:"push",selection:"X",bookmaker:"Bet",stake:"$12.0",odds:"2.03",profit:"-$24.36"},
+{date:"11 Nov 2026",time:"18:00",match:"Milan - Sassuolo",league:"Italy. Serie A",status:"win",selection:"Milan",bookmaker:"1XBET",stake:"$16.8",odds:"1.74",profit:"+29.23"}
+];
+const body=document.getElementById('betsBody');
+function renderBets(q=""){body.innerHTML="";bets.filter(b=>Object.values(b).join(" ").toLowerCase().includes(q.toLowerCase())).forEach(b=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${b.date}</td><td>${b.time}</td><td><div class="match">${b.match}</div></td><td>${b.league}</td><td><span class="status ${b.status}">${b.status}</span></td><td>${b.selection}</td><td>${b.bookmaker}</td><td>${b.stake}</td><td>${b.odds}</td><td class="${b.profit.startsWith('+')?'profit':''}">${b.profit}</td>`;body.appendChild(tr)});if(!body.children.length)body.innerHTML='<tr><td colspan="10" style="text-align:center;color:#9aa6c9;padding:25px">No matching bets found.</td></tr>'}
+renderBets();
+document.getElementById('search').addEventListener('input',e=>renderBets(e.target.value));
+document.querySelectorAll('.navbtn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.navbtn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');const p=btn.dataset.page;document.getElementById('pageTitle').textContent=p;document.getElementById('crumb').textContent=p;if(p!=="Dashboard")document.querySelector('.panelhead h2').textContent=p==="Bets"?"Latest Bets":p+" overview";else document.querySelector('.panelhead h2').textContent="Latest Bets"}));
+const modal=document.getElementById('modal');document.getElementById('newBet').onclick=()=>modal.classList.add('show');document.getElementById('cancelModal').onclick=()=>modal.classList.remove('show');modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('show')});
+document.getElementById('betForm').addEventListener('submit',e=>{e.preventDefault();const stake=Number(document.getElementById('stakeInput').value),odds=Number(document.getElementById('oddsInput').value);bets.unshift({date:new Date().toLocaleDateString('en-US',{day:'2-digit',month:'short',year:'numeric'}),time:new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}),match:document.getElementById('matchInput').value,league:document.getElementById('leagueInput').value||"—",status:"pending",selection:document.getElementById('selectionInput').value,bookmaker:"—",stake:"$"+stake.toFixed(2),odds:odds.toFixed(2),profit:"—"});renderBets(document.getElementById('search').value);e.target.reset();modal.classList.remove('show')});
+document.getElementById('filterBtn').onclick=()=>{const current=document.getElementById('search').value;const q=prompt("Filter bets by team, league, status or bookmaker:",current);if(q!==null){document.getElementById('search').value=q;renderBets(q)}};
+document.getElementById('notify').onclick=()=>alert("You are all caught up.");document.getElementById('settings').onclick=()=>alert("Settings panel is a demo placeholder.");document.getElementById('refreshLive').onclick=()=>alert("This demo is not connected to a live sports data provider.");document.getElementById('allMatches').onclick=()=>alert("Live fixtures require a connected sports data API.");
+let shown=new Date(2026,10,12);const calTitle=document.getElementById('calTitle'),calGrid=document.getElementById('calGrid');
+function drawCal(){const y=shown.getFullYear(),m=shown.getMonth();calTitle.textContent=shown.toLocaleDateString('en-US',{month:'long',year:'numeric'});calGrid.innerHTML='';['S','M','T','W','T','F','S'].forEach(x=>{const s=document.createElement('span');s.textContent=x;calGrid.appendChild(s)});const first=new Date(y,m,1).getDay(),count=new Date(y,m+1,0).getDate();for(let i=0;i<first;i++)calGrid.appendChild(document.createElement('span'));for(let d=1;d<=count;d++){const s=document.createElement('span');s.textContent=d;s.className='day'+(y===2026&&m===10&&d===12?' today':'');calGrid.appendChild(s)}}
+document.getElementById('prevMonth').onclick=()=>{shown.setMonth(shown.getMonth()-1);drawCal()};document.getElementById('nextMonth').onclick=()=>{shown.setMonth(shown.getMonth()+1);drawCal()};drawCal();
+</script>
+</body></html>
